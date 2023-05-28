@@ -21,9 +21,23 @@ def alignImages(im1, im2):
   # Match features.
   matcher = cv2.DescriptorMatcher_create(cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING)
   matches = matcher.match(descriptors1, descriptors2, None)
+
+  print("---type(matches---",type(matches)) # TUPLE -- (< cv2.DMatch 0x7f87383db5b0>, < cv2.DMatch 0x7f87383db250>, < cv2.DMatch 0x7f87383db530>,
+  #print("---len(matches)---",len(matches)) # 500 
+  ls_matches = list(matches)
+  #print("---len(ls_matches)---",len(ls_matches)) # 500 
+  print("---ls_matches[:5]---",ls_matches[:5])
+  print("-----     "*10)
   
   # Sort matches by score
-  matches.sort(key=lambda x: x.distance, reverse=False)
+  # set_matches_sorted = matches.sort(key=lambda x: x.distance, reverse=False)
+  # print("---type(set_matches_sorted---",type(set_matches_sorted))
+  ls_sorted = sorted(ls_matches,key=lambda x: x.distance, reverse=False)
+  print("---type(ls_sorted---",type(ls_sorted))
+  print("---ls_sorted[:5]---",ls_sorted[:5])
+  print("-----     "*10)
+
+  #matches.sort(key=lambda x: x.distance, reverse=False)
 
   # Remove not so good matches
   numGoodMatches = int(len(matches) * GOOD_MATCH_PERCENT)
