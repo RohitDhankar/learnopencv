@@ -1,0 +1,21 @@
+# SOURCE -- https://pyimagesearch.com/2020/08/31/image-alignment-and-registration-with-opencv/
+
+1/ keypoints --->
+keypoints, which are just the location of regions of interest. 
+Keypoints are meant to identify salient regions of an input image.
+Provided we have enough keypoint matches and correspondences, we can then compute a homography matrix, which allows us to apply a perspective warp to align the images
+
+2/ descriptor --->> 
+
+
+
+
+# SOURCE -- https://learnopencv.com/image-alignment-feature-based-using-opencv-c-python/
+
+1/ keypoints --->
+keypoints or feature points. There are several keypoint detectors implemented in OpenCV ( e.g. SIFT, SURF, and ORB).
+In many Computer Vision applications, we often need to identify interesting stable points in an image. These points are called keypoints or feature points.
+
+2/ descriptor --->> 
+Ideally, the same physical point in two images should have the same descriptor. ORB uses a modified version of the feature descriptor called BRISK.
+

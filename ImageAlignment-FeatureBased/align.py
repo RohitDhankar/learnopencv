@@ -1,3 +1,7 @@
+#[learnOpencv]/learnopencv/ImageAlignment-FeatureBased/align.py
+# KEYPOINTS --  keypoints, which are just the location of regions of interest. ( Source -- https://pyimagesearch.com/2020/08/31/image-alignment-and-registration-with-opencv/)
+
+
 from __future__ import print_function
 import cv2
 import numpy as np
@@ -18,8 +22,10 @@ def alignImages(im1, im2):
   keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
   keypoints2, descriptors2 = orb.detectAndCompute(im2Gray, None)
   
-  # Match features.
+  # Match features. 
+  #BLOG >># We use the hamming distance as a measure of similarity between two feature descriptors.
   matcher = cv2.DescriptorMatcher_create(cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING)
+
   matches = matcher.match(descriptors1, descriptors2, None)
 
   print("---type(matches---",type(matches)) # TUPLE -- (< cv2.DMatch 0x7f87383db5b0>, < cv2.DMatch 0x7f87383db250>, < cv2.DMatch 0x7f87383db530>,
@@ -56,7 +62,7 @@ def alignImages(im1, im2):
     points2[i, :] = keypoints2[match.trainIdx].pt
   
   # Find homography
-  h, mask = cv2.findHomography(points1, points2, cv2.RANSAC)
+  h, mask = cv2.findHomography(points1, points2, cv2.RANSAC) ## Random Sample Consensus (RANSAC) 
 
   # Use homography
   height, width, channels = im2.shape
